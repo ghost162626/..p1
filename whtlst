@@ -3,7 +3,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Darkmoonxhubscript/Da
 -- Lista de usuários permitidos
 local whiteList = {
     ["ghost_33828936"] = true,
-    ["2"] = true,
+    ["alurarshh"] = true,
     ["3"] = true
 }
 
