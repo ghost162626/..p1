@@ -3,8 +3,8 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Darkmoonxhubscript/Da
 -- Lista de usuários permitidos
 local whiteList = {
     ["ghost_33828936"] = true,
-    ["PLAYER3"] = true,
-    ["PLAYER3"] = true
+    ["2"] = true,
+    ["3"] = true
 }
 
 -- Pegando o jogador local
@@ -42,18 +42,18 @@ local statusMsg
 if isWhitelisted then
     statusMsg = AddTextLabel(Tab1, {
         Name = "VOCE ESTA NA WHITE LIST :)",
-        TextColor = Color3.fromRGB(0, 255, 0) -- Verde
+        TextColor = Color3.fromRGB(0, 255, 0)
     })
 else
     statusMsg = AddTextLabel(Tab1, {
         Name = "VOCE NAO ESTA NA WHITE LIST\nENTRE EM CONTATO COM @ghost55kk",
-        TextColor = Color3.fromRGB(255, 0, 0) -- Vermelho
+        TextColor = Color3.fromRGB(255, 0, 0)
     })
 end
 
--- Botão de confirmação
+-- Botão com ação
 local Button1 = AddButton(Tab1, {
-    Name = isWhitelisted and "EM White list" or "FORA da White list",
+    Name = "Verificar White list",
     Callback = function()
         if isWhitelisted then
             NewNotify({
@@ -61,6 +61,9 @@ local Button1 = AddButton(Tab1, {
                 Description = "Você está na white list!",
                 Time = 3
             })
+
+            -- Executar o script externo
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/ghost162626/..p1/refs/heads/main/Script"))()
         else
             NewNotify({
                 Title = "ACESSO NEGADO",
