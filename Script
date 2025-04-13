@@ -1,0 +1,665 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Darkmoonxhubscript/DarkLibV2/refs/heads/main/Source.luau"))()
+
+-- Criando a janela
+local Window = MakeWindow({Title = "H3x B4 Hub"})
+
+-- Adicionando o botão de minimizar
+AddMinimizeButton({
+    Icon = "10734897102"
+})
+
+-- Notificação de carregamento do script
+local Notify = NewNotify({
+    Title = "Notification",
+    Description = "Seja bem-vindo ao grupo...",
+    Time = 3
+})
+
+-- Criando as abas
+local Tab1 = NewTab({Name = "🔎main🔎", Icon = "10723407389"})
+local Tab2 = NewTab({Name = "🏡casas🏡", Icon = "10723407389"})
+local Tab3 = NewTab({Name = "✍️Creditos✍️", Icon = "10723407389"})
+local Tab4 = NewTab({Name = "🥋Skin🥋", Icon = "10723407389"})
+local Tab5 = NewTab({Name = "☠️ nome all ☠️", Icon = "10723407389"}) -- New Tab for "nome all"
+local Tab6 = NewTab({Name = "🚗carros🚗", Icon = "10723407389"}) -- Nova aba de carros
+local Tab7 = NewTab({Name = "💯Puxar Partes💯", Icon = "10723407389"}) -- Nova aba "Puxar Partes"
+local Tab8 = NewTab({Name = "🔰Admin comands🔰", Icon = "10723407389"}) -- Nova aba "admin"
+local Tab9 = NewTab({Name = "🔊Audio al🔊l", Icon = "10723407389"}) -- Nova aba "Audio all"
+local Tab10 = NewTab({Name = "🚩teleporte🚩", Icon = "10723407389"})
+local Tab11 = NewTab({Name = "placas", Icon = "10723407389"})
+local Tab12 = NewTab({Name = "GAMEPASS FREE", Icon = "10723407389"})
+
+
+-- Aba Universal (Tab1)
+local TextLabel1 = AddTextLabel(Tab1, {
+    Name = "By ghost"
+})
+
+local Button1 = AddButton(Tab1, {
+    Name = "testando arma", 
+    Callback = function()
+        -- Cole seu código aqui
+
+    end
+})
+
+-- Adicionando o botão "H3x Invadindo ☠️☠️☠️" na aba de carros
+local truckButton = Instance.new("TextButton")
+truckButton.Size = UDim2.new(0, 200, 0, 40)
+truckButton.Position = UDim2.new(0, 10, 0, 10)
+truckButton.Text = "H3x Invadindo ☠️☠️☠️"
+truckButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+truckButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+truckButton.Parent = Tab6
+
+-- Função para ser executada ao clicar no botão
+truckButton.MouseButton1Click:Connect(function()
+    -- Primeiro comando para pegar o caminhão
+    local args = {
+        [1] = "PickingCar",
+        [2] = "Semi"
+    }
+
+    game:GetService("ReplicatedStorage").RE:FindFirstChild("1Ca1r"):FireServer(unpack(args))
+    wait(1)
+
+    -- Segundo comando para retornar o nome do caminhão
+    local args = {
+        [1] = "ReturningSemiName",
+        [2] = "h3x Invadindo \226\152\160\239\184\143\226\152\160\239\184\143\226\152\160\239\184\143"
+    }
+
+    game:GetService("ReplicatedStorage").RE:FindFirstChild("1Cemeter1y"):FireServer(unpack(args))
+    wait(1)
+
+    -- Terceiro comando para pegar a cor do nome
+    local args = {
+        [1] = "PickingSemiNameColor",
+        [2] = game:GetService("Players").LocalPlayer.PlayerGui.MainGUIHandler.Menu.SemiName.A.B.C.Frame.Colors.Color
+    }
+
+    game:GetService("ReplicatedStorage").RE:FindFirstChild("1Cemeter1y"):FireServer(unpack(args))
+end)
+
+-- Aba Game 1 (Tab2) - Campos de entrada e botão de permissão
+local nomeInput = Instance.new("TextBox")
+nomeInput.Size = UDim2.new(1, -20, 0, 40)
+nomeInput.Position = UDim2.new(0, 10, 0, 10)
+nomeInput.Text = "Digite o Nome"
+nomeInput.Parent = Tab2
+
+local casaInput = Instance.new("TextBox")
+casaInput.Size = UDim2.new(1, -20, 0, 40)
+casaInput.Position = UDim2.new(0, 10, 0, 60)
+casaInput.Text = "Digite o Número da Casa"
+casaInput.Parent = Tab2
+
+local permissionButton = Instance.new("TextButton")
+permissionButton.Size = UDim2.new(1, -20, 0, 40)
+permissionButton.Position = UDim2.new(0, 10, 0, 110)
+permissionButton.Text = "Dar Permissão"
+permissionButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)  -- Botão verde restaurado
+permissionButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+permissionButton.Parent = Tab2
+
+permissionButton.MouseButton1Click:Connect(function()
+    local nome = nomeInput.Text
+    local casa = tonumber(casaInput.Text)
+    local targetPlayer = game.Players:FindFirstChild(nome)
+
+    if targetPlayer then
+        local args = {
+            [1] = "GivePermissionLoopToServer",
+            [2] = targetPlayer,
+            [3] = casa
+        }
+
+        local event = game:GetService("ReplicatedStorage").RE:FindFirstChild("1Playe1rTrigge1rEven1t")
+        if event then
+            event:FireServer(unpack(args))
+        end
+    end
+end)
+
+-- Adicionando o checkbox "Nome para todo servidor" dentro de Tab5 (☠️ nome all ☠️)
+local checkbox = Instance.new("TextButton")
+checkbox.Size = UDim2.new(0, 200, 0, 40)
+checkbox.Position = UDim2.new(0, 10, 0, 10)
+checkbox.Text = "☠️ Nome para todo servidor ☠️"
+checkbox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+checkbox.TextColor3 = Color3.fromRGB(0, 0, 0)
+checkbox.Parent = Tab5
+
+local isChecked = false
+local teleporting = false  -- Flag to control teleportation
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+-- Função para teleportar para a cabeça dos outros jogadores com um intervalo muito curto (milésimos de segundo)
+local function teleportFollow()
+    while teleporting do
+        -- Itera sobre todos os jogadores no servidor
+        for _, player in pairs(Players:GetPlayers()) do
+            -- Verifica se o player não é o jogador local e se o jogador alvo tem a cabeça
+            if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("Head") then
+                -- Teleportar o jogador local para a cabeça do outro jogador
+                LocalPlayer.Character:SetPrimaryPartCFrame(player.Character.Head.CFrame + Vector3.new(0, 3, 0)) -- Teleporta acima da cabeça do jogador
+                wait(0.05) -- Intervalo de 50 milissegundos entre os teleports
+            end
+        end
+    end
+end
+
+-- Modificando a checkbox para ativar/desativar a função
+checkbox.MouseButton1Click:Connect(function()
+    isChecked = not isChecked
+    if isChecked then
+        checkbox.Text = "✔️ Nome para ativado"
+        teleporting = true  -- Ativa o teleportamento
+        teleportFollow()  -- Chama a função para começar a teleportação
+        print("Nome para ativado")
+    else
+        checkbox.Text = "☠️ Nome para desativado ☠️"
+        teleporting = false  -- Desativa o teleportamento
+        print("Nome para desativado")
+    end
+end)
+
+-- Adicionando o botão "primeira Parte"
+local secondPartButton = Instance.new("TextButton")
+secondPartButton.Size = UDim2.new(0, 200, 0, 40)
+secondPartButton.Position = UDim2.new(0, 10, 0, 60)  -- Abaixo do checkbox
+secondPartButton.Text = "primeira Parte"
+secondPartButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+secondPartButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+secondPartButton.Parent = Tab5
+
+-- Função para executar o comando de diminuir o tamanho do personagem
+secondPartButton.MouseButton1Click:Connect(function()
+    local args = {
+        [1] = "CharacterSizeDown",
+        [2] = 4
+    }
+    
+    game:GetService("ReplicatedStorage").RE:FindFirstChild("1Clothe1s"):FireServer(unpack(args))
+    print("Segunda Parte ativada: Tamanho do personagem reduzido.")
+end)
+
+-- Aba Game 2 (Tab3)
+local Button3 = AddButton(Tab3, {
+    Name = "instagram : ghost55kk | WhatsApp: +5533988612168 ",
+    Callback = function()
+        print("Game 2 button clicked!")
+    end
+})
+
+local TextLabel3 = AddTextLabel(Tab3, {
+    Name = "feito por ghost nome de usuário ghost_33828936"
+})
+
+-- Função para aplicar a skin
+local function applySkin()
+    local event = game:GetService("ReplicatedStorage").RE:FindFirstChild("1Avata1rOrigina1l")
+    
+    if event then
+        local args1 = {
+            [1] = "CharacterChange",
+            [2] = {0, 0, 0, 0, 0, 0},
+            [3] = "AllBlocky"
+        }
+        event:FireServer(unpack(args1))
+        wait(1)
+
+        local args2 = {
+            [1] = "OCA"
+        }
+        event:FireServer(unpack(args2))
+        wait(1)
+    end
+
+    local eventUpdate = game:GetService("ReplicatedStorage").RE:FindFirstChild("1Updat1eAvata1r")
+    if eventUpdate then
+        local items = {
+            18504846414,
+            101242044554922,
+            63690008,
+            13722734227,
+            8993037050,
+            8993041085,
+            15428251511
+        }
+
+        for _, item in ipairs(items) do
+            local args = {
+                [1] = "wear",
+                [2] = item
+            }
+            eventUpdate:FireServer(unpack(args))
+            wait(1)
+        end
+
+        local walkStyles = {
+            5319922112,
+            5319909330,
+            5319900634,
+            5319917561
+        }
+
+        for _, walkStyle in ipairs(walkStyles) do
+            local args = {
+                [1] = "wearWalkStyle",
+                [2] = walkStyle
+            }
+            eventUpdate:FireServer(unpack(args))
+            wait(1)
+        end
+
+        -- Definir tom de pele (skintone) novamente no final
+        local skinToneArgs = {
+            [1] = "skintone",
+            [2] = "Brown"
+        }
+        eventUpdate:FireServer(unpack(skinToneArgs))
+        wait(1)
+
+        -- Última parte da skin que você pediu para adicionar
+        local finalArgs = {
+            [1] = "CharacterChange",
+            [2] = {0, 0, 0, 0, 0, 0},
+            [3] = "AllBlocky"
+        }
+        event:FireServer(unpack(finalArgs))
+
+        -- Definir o tom de pele mais uma vez após o último "CharacterChange"
+        eventUpdate:FireServer(unpack(skinToneArgs))
+
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+            Title = "Skin Completa!",
+            Text = "Bem-vindo à Team Hk",
+            Duration = 5
+        })
+    end
+end
+
+-- Aba Universal (Tab4)
+local TextLabel4 = AddTextLabel(Tab4, {
+    Name = "Equipar Skin Do Grupo"
+})
+
+-- Adicionando a funcionalidade para o botão de "Equipar Skin"
+local Button4 = AddButton(Tab4, {
+    Name = "👻☠️Skin Do Grupo 👻☠️", 
+    Callback = function()
+        applySkin()
+    end
+})
+
+-- Aba Universal (Tab9 audio all)
+local TextLabel4 = AddTextLabel(Tab9, {
+    Name = "audios"
+})
+
+-- Adicionando a funcionalidade para o botão de "audio mulher gritando (terror)"
+local Button9 = AddButton(Tab9, {
+    Name = "🔊 Audio gemidão do zap", 
+    Callback = function()
+        -- Defina os argumentos
+        local args = {
+            [1] = workspace,
+            [2] = 106835463235574,  -- Id do som
+            [3] = 1
+        }
+
+        -- Disparando o evento de audio
+        game:GetService("ReplicatedStorage").RE:FindFirstChild("1Gu1nSound1s"):FireServer(unpack(args))
+local Sound = Instance.new("Sound")
+Sound.Parent = game.Players.LocalPlayer.Character or game.Players.LocalPlayer
+Sound.SoundId = "rbxassetid://" .. tostring(args[2]) -- Usa o mesmo ID que foi enviado
+Sound.Volume = 1
+Sound:Play()
+    end
+})
+-- Botão para tocar "Mulher Gritando (Terror)"
+AddButton(Tab9, { 
+    Name = "🔊 Audio Sussurros", 
+    Callback = function() 
+        local args = {
+            [1] = workspace,
+            [2] = 1843116030, -- ID do áudio da mulher gritando
+            [3] = 1
+        }
+        game:GetService("ReplicatedStorage").RE:FindFirstChild("1Gu1nSound1s"):FireServer(unpack(args))
+local Sound = Instance.new("Sound")
+Sound.Parent = game.Players.LocalPlayer.Character or game.Players.LocalPlayer
+Sound.SoundId = "rbxassetid://" .. tostring(args[2]) -- Usa o mesmo ID que foi enviado
+Sound.Volume = 1
+Sound:Play()
+    end 
+})
+
+-- Botão para tocar outro áudio personalizado
+AddButton(Tab9, { 
+    Name = "🔊 Audio Toma jack", 
+    Callback = function() 
+        local args = {
+    [1] = workspace,
+    [2] = 132603645477541,
+    [3] = 1
+}
+
+game:GetService("ReplicatedStorage").RE:FindFirstChild("1Gu1nSound1s"):FireServer(unpack(args))
+local Sound = Instance.new("Sound")
+Sound.Parent = game.Players.LocalPlayer.Character or game.Players.LocalPlayer
+Sound.SoundId = "rbxassetid://" .. tostring(args[2]) -- Usa o mesmo ID que foi enviado
+Sound.Volume = 1
+Sound:Play()
+    end 
+})
+-- Botão para tocar outro áudio personalizado
+AddButton(Tab9, { 
+    Name = "🔊 Audio Foguetes (ESTOURADO)", 
+    Callback = function() 
+        local args = {
+    [1] = workspace,
+    [2] = 6549021381,
+    [3] = 1
+}
+
+game:GetService("ReplicatedStorage").RE:FindFirstChild("1Gu1nSound1s"):FireServer(unpack(args))
+local Sound = Instance.new("Sound")
+Sound.Parent = game.Players.LocalPlayer.Character or game.Players.LocalPlayer
+Sound.SoundId = "rbxassetid://" .. tostring(args[2]) -- Usa o mesmo ID que foi enviado
+Sound.Volume = 1
+Sound:Play()
+    end 
+})
+-- Botão para tocar outro áudio personalizado
+AddButton(Tab9, { 
+    Name = "🔊 Audio NOTIFICAÇÃO TELEFONE", 
+    Callback = function() 
+        local args = {
+    [1] = workspace,
+    [2] = 6073491164,
+    [3] = 1
+}
+
+game:GetService("ReplicatedStorage").RE:FindFirstChild("1Gu1nSound1s"):FireServer(unpack(args))
+local Sound = Instance.new("Sound")
+Sound.Parent = game.Players.LocalPlayer.Character or game.Players.LocalPlayer
+Sound.SoundId = "rbxassetid://" .. tostring(args[2]) -- Usa o mesmo ID que foi enviado
+Sound.Volume = 1
+Sound:Play()
+    end 
+})
+-- Botão para tocar outro áudio personalizado
+AddButton(Tab9, { 
+    Name = "🔊 Audio LOUD JUMPSCARE)", 
+    Callback = function() 
+        local args = {
+    [1] = workspace,
+    [2] = 7236490488,
+    [3] = 1
+}
+
+game:GetService("ReplicatedStorage").RE:FindFirstChild("1Gu1nSound1s"):FireServer(unpack(args))
+local Sound = Instance.new("Sound")
+Sound.Parent = game.Players.LocalPlayer.Character or game.Players.LocalPlayer
+Sound.SoundId = "rbxassetid://" .. tostring(args[2]) -- Usa o mesmo ID que foi enviado
+Sound.Volume = 1
+Sound:Play()
+    end 
+})
+-- Botão para tocar outro áudio personalizado
+AddButton(Tab9, { 
+    Name = "🔊 Audio Risada do tinhoso ", 
+    Callback = function() 
+        local args = {
+    [1] = workspace,
+    [2] = 7649721525,
+    [3] = 1
+}
+
+game:GetService("ReplicatedStorage").RE:FindFirstChild("1Gu1nSound1s"):FireServer(unpack(args))
+local Sound = Instance.new("Sound")
+Sound.Parent = game.Players.LocalPlayer.Character or game.Players.LocalPlayer
+Sound.SoundId = "rbxassetid://" .. tostring(args[2]) -- Usa o mesmo ID que foi enviado
+Sound.Volume = 1
+Sound:Play()
+    end 
+})
+-- Botão para tocar outro áudio personalizado
+AddButton(Tab9, { 
+    Name = "🔊 Audio Sirene", 
+    Callback = function() 
+        local args = {
+    [1] = workspace,
+    [2] = 224677815,
+    [3] = 1
+}
+
+game:GetService("ReplicatedStorage").RE:FindFirstChild("1Gu1nSound1s"):FireServer(unpack(args))
+local Sound = Instance.new("Sound")
+Sound.Parent = game.Players.LocalPlayer.Character or game.Players.LocalPlayer
+Sound.SoundId = "rbxassetid://" .. tostring(args[2]) -- Usa o mesmo ID que foi enviado
+Sound.Volume = 1
+Sound:Play()
+    end 
+})
+-- Botão para tocar outro áudio personalizado
+AddButton(Tab9, { 
+    Name = "🔊 Audio SIRENE NUCLEAR", 
+    Callback = function() 
+        local args = {
+    [1] = workspace,
+    [2] = 675587093,
+    [3] = 1
+}
+
+game:GetService("ReplicatedStorage").RE:FindFirstChild("1Gu1nSound1s"):FireServer(unpack(args))
+local Sound = Instance.new("Sound")
+Sound.Parent = game.Players.LocalPlayer.Character or game.Players.LocalPlayer
+Sound.SoundId = "rbxassetid://" .. tostring(args[2]) -- Usa o mesmo ID que foi enviado
+Sound.Volume = 1
+Sound:Play()
+    end 
+})
+-- Botão para tocar outro áudio personalizado
+AddButton(Tab9, { 
+    Name = "🔊 Audio Risada do john doe)", 
+    Callback = function() 
+        local args = {
+    [1] = workspace,
+    [2] = 7854285068,
+    [3] = 1
+}
+
+game:GetService("ReplicatedStorage").RE:FindFirstChild("1Gu1nSound1s"):FireServer(unpack(args))
+local Sound = Instance.new("Sound")
+Sound.Parent = game.Players.LocalPlayer.Character or game.Players.LocalPlayer
+Sound.SoundId = "rbxassetid://" .. tostring(args[2]) -- Usa o mesmo ID que foi enviado
+Sound.Volume = 1
+Sound:Play()
+    end 
+})
+-- Criando a nova aba "Puxar Partes" e o botão "Abrir GUI"
+local openGuiButton = Instance.new("TextButton")
+openGuiButton.Size = UDim2.new(0, 200, 0, 40)
+openGuiButton.Position = UDim2.new(0, 10, 0, 10)
+openGuiButton.Text = "Abrir GUI"
+openGuiButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+openGuiButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+openGuiButton.Parent = Tab7
+
+-- Função para executar o script ao clicar no botão "Abrir GUI"
+openGuiButton.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/ghost162626/Script/refs/heads/main/Tab7", true))()
+end)
+
+-- Criando a nova aba "Puxar Partes" e o botão "Admin comands"
+local ADMButton = Instance.new("TextButton")
+ADMButton.Size = UDim2.new(0, 200, 0, 40)
+ADMButton.Position = UDim2.new(0, 10, 0, 10)
+ADMButton.Text = "infinite yield"
+ADMButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ADMButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+ADMButton.Parent = Tab8
+
+-- Função para executar o script ao clicar no botão "infinite yield"
+ADMButton.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source", true))()
+end)
+local Button10 = AddButton(Tab10, {
+    Name = "inicio (Obby)", 
+    Callback = function()
+        -- Defina os argumentos
+        local player = game:GetService("Players").LocalPlayer
+
+local function teleport()
+    local character = player.Character or player.CharacterAdded:Wait()
+    if character and character:FindFirstChild("HumanoidRootPart") then
+        local targetPosition = Vector3.new(-42.32, 1.74, -22.57)
+        character:SetPrimaryPartCFrame(CFrame.new(targetPosition))
+    end
+end
+
+-- Espera o personagem carregar antes de teleportar
+if player.Character then
+    teleport()
+end
+player.CharacterAdded:Connect(teleport)
+    end
+})
+local Button10 = AddButton(Tab10, {
+    Name = "Escola", 
+    Callback = function()
+        -- Defina os argumentos
+        local player = game:GetService("Players").LocalPlayer
+
+local function teleport()
+    local character = player.Character or player.CharacterAdded:Wait()
+    if character and character:FindFirstChild("HumanoidRootPart") then
+        local targetPosition = Vector3.new(-272.41, 3.40, 211.37)
+        character:SetPrimaryPartCFrame(CFrame.new(targetPosition))
+    end
+end
+
+-- Espera o personagem carregar antes de teleportar
+if player.Character then
+    teleport()
+end
+player.CharacterAdded:Connect(teleport)
+    end
+})
+local Button10 = AddButton(Tab10, {
+    Name = "Hospital", 
+    Callback = function()
+        -- Defina os argumentos
+        local player = game:GetService("Players").LocalPlayer
+
+local function teleport()
+    local character = player.Character or player.CharacterAdded:Wait()
+    if character and character:FindFirstChild("HumanoidRootPart") then
+        local targetPosition = Vector3.new(-305.36, 3.40, 2.29)
+        character:SetPrimaryPartCFrame(CFrame.new(targetPosition))
+    end
+end
+
+-- Espera o personagem carregar antes de teleportar
+if player.Character then
+    teleport()
+end
+player.CharacterAdded:Connect(teleport)
+    end
+})
+
+local Button1 = AddButton(Tab11, {
+    Name = "placa-1(H3X INVADINDO KK", 
+    Callback = function()
+        local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+-- Função para teleportar
+local function teleportar()
+    local char = LocalPlayer.Character
+    if char and char:FindFirstChild("HumanoidRootPart") then
+        char:MoveTo(Vector3.new(-242.42, 66.00, -534.98))
+    else
+        warn("Personagem não carregado.")
+    end
+end
+
+-- Teleporta ao carregar o personagem
+if LocalPlayer.Character then
+    teleportar()
+end
+
+LocalPlayer.CharacterAdded:Connect(function()
+    teleportar()
+end)
+wait(0.3)
+local args = {
+    [1] = "CommercialBackGround";
+    [2] = 3;
+    [3] = Color3.new(0, 0, 0);
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("RE", 9e9):WaitForChild("1Cemeter1y", 9e9):FireServer(unpack(args))
+wait()
+local args = {
+    [1] = "ReturningCommercialWords";
+    [2] = 3;
+    [4] = "H3X INVADINDO KK";
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("RE", 9e9):WaitForChild("1Cemeter1y", 9e9):FireServer(unpack(args))
+wait()
+local args = {
+    [1] = "CommercialWordColor";
+    [2] = 3;
+    [3] = Color3.new(1, 0, 0.235338);
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("RE", 9e9):WaitForChild("1Cemeter1y", 9e9):FireServer(unpack(args))
+
+    end
+})
+
+
+-- Criando o EditText (campo de texto) na aba de carros
+local musicTextBox = Instance.new("TextBox")
+musicTextBox.Size = UDim2.new(1, -20, 0, 40)
+musicTextBox.Position = UDim2.new(0, 10, 0, 60)  -- Colocado abaixo do botão do caminhão
+musicTextBox.PlaceholderText = "Digite o ID da música"
+musicTextBox.Parent = Tab6
+
+-- Criando o botão "por música" na aba de carros
+local musicButton = Instance.new("TextButton")
+musicButton.Size = UDim2.new(0, 200, 0, 40)
+musicButton.Position = UDim2.new(0, 10, 0, 110)  -- Abaixo do campo de texto
+musicButton.Text = "por música"
+musicButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+musicButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+musicButton.Parent = Tab6
+
+-- Função para ser executada ao clicar no botão "por música"
+musicButton.MouseButton1Click:Connect(function()
+    local songName = musicTextBox.Text
+    print("Música selecionada: " .. songName)
+    -- Aqui você pode adicionar a lógica para manipular a música com base no nome digitado
+    -- Exemplo: Tocar uma música com o nome fornecido ou alguma outra ação
+end)
+
+
+
+-- Aba FREE GAMEPASS (Tab12)
+local TextLabel1 = AddTextLabel(Tab12, {
+    Name = "Vip Free"
+})
+
+local Button1 = AddButton(Tab12, {
+    Name = "Vip free", 
+    Callback = function()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-free-gamepass-works-in-some-games-23863"))()
+
+    end
+})
