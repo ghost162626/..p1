@@ -42,7 +42,9 @@ local Button1 = AddButton(Tab1, {
 
     end
 })
-
+local TextLabel1 = AddTextLabel(Tab6, {
+    Name = "  >| caminhão |<   "
+})
 -- Adicionando o botão "H3x Invadindo ☠️☠️☠️" na aba de carros
 local truckButton = Instance.new("TextButton")
 truckButton.Size = UDim2.new(0, 200, 0, 40)
@@ -51,6 +53,141 @@ truckButton.Text = "H3x Invadindo ☠️☠️☠️"
 truckButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 truckButton.TextColor3 = Color3.fromRGB(0, 0, 0)
 truckButton.Parent = Tab6
+local TweenService = game:GetService("TweenService")
+
+local TweenService = game:GetService("TweenService")
+
+-- Lista de músicas
+local musicas = {
+    {"aprova de balas", "105176847371648"},
+	{"MTG Fantasy", "108428674768620"},
+	{"MTG EVERYTHING", "105105608281576"},
+	{"MTG MIND GAME", "103036582713557"},
+	{"MTG RITMO DRAGON", "87928459631438"},
+	{"tata bota na bct", "81902909302285"},
+	{"FEMININO DO VAPO FUNK", "106317184644394"},
+	{"melodia siciliana (d)", "1847197442"},
+	{"BRAZIL PHONK", "88064647826500"},
+	{"poin poin poin poin ", "114101102913882"},
+	{"ela tano (slowed)", "85481949732828"},
+	{"funk do boche ", "89907278904871"},
+}
+
+-- Dropdown container
+local dropdownHolder = Instance.new("Frame")
+dropdownHolder.Size = UDim2.new(0, 220, 0, 40)
+dropdownHolder.Position = UDim2.new(0, 10, 0, 180)
+dropdownHolder.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+dropdownHolder.BorderSizePixel = 0
+dropdownHolder.ZIndex = 10
+dropdownHolder.Parent = Tab6
+
+-- Botão principal do dropdown
+local toggleButton = Instance.new("TextButton")
+toggleButton.Size = UDim2.new(1, 0, 1, 0)
+toggleButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+toggleButton.Text = "▼ Escolha uma música"
+toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+toggleButton.Font = Enum.Font.SourceSansBold
+toggleButton.TextSize = 20
+toggleButton.ZIndex = 11
+toggleButton.Parent = dropdownHolder
+
+-- ScrollingFrame para conter as opções
+local optionsFrame = Instance.new("ScrollingFrame")
+optionsFrame.Size = UDim2.new(1, 0, 0, 0)
+optionsFrame.Position = UDim2.new(0, 0, 1, 0)
+optionsFrame.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+optionsFrame.BorderSizePixel = 0
+optionsFrame.ClipsDescendants = true
+optionsFrame.ZIndex = 12
+optionsFrame.ScrollBarThickness = 5
+optionsFrame.ScrollingDirection = Enum.ScrollingDirection.Y
+optionsFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+optionsFrame.Parent = dropdownHolder
+
+local optionHeight = 35
+local isOpen = false
+
+-- Abrir ou fechar o dropdown
+local function toggleDropdown()
+	isOpen = not isOpen
+	local targetSize = isOpen and math.min(#musicas, 5) * optionHeight or 0
+	TweenService:Create(optionsFrame, TweenInfo.new(0.2), {Size = UDim2.new(1, 0, 0, targetSize)}):Play()
+end
+
+toggleButton.MouseButton1Click:Connect(toggleDropdown)
+
+-- Criar botões para cada música
+for i, data in ipairs(musicas) do
+	local nome, id = data[1], data[2]
+
+	local option = Instance.new("TextButton")
+	option.Size = UDim2.new(1, 0, 0, optionHeight)
+	option.Position = UDim2.new(0, 0, 0, (i - 1) * optionHeight)
+	option.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+	option.TextColor3 = Color3.fromRGB(255, 255, 255)
+	option.Text = nome
+	option.Font = Enum.Font.SourceSans
+	option.TextSize = 18
+	option.ZIndex = 13
+	option.Parent = optionsFrame
+
+	option.MouseButton1Click:Connect(function()
+		-- Toca a música ao clicar
+		local args = {
+			[1] = "PickingCarMusicText",
+			[2] = id
+		}
+		game:GetService("ReplicatedStorage"):WaitForChild("RE", 9e9):WaitForChild("1Player1sCa1r", 9e9):FireServer(unpack(args))
+
+		-- Fecha dropdown e atualiza texto
+		toggleButton.Text = "▼ " .. nome
+		toggleDropdown()
+	end)
+end
+
+-- Atualiza o CanvasSize conforme o número de músicas
+optionsFrame.CanvasSize = UDim2.new(0, 0, 0, #musicas * optionHeight)
+
+local TextLabel1 = AddTextLabel(Tab6, {
+    Name = "  >| música carros |<   "
+})
+-- TextBox para colocar o ID da música
+local textBox = Instance.new("TextBox")
+textBox.Size = UDim2.new(0, 200, 0, 50)
+textBox.Position = UDim2.new(0, 10, 0, 60)
+textBox.PlaceholderText = "Coloque o ID da música"
+textBox.Text = ""
+textBox.Font = Enum.Font.SourceSans
+textBox.TextSize = 24
+textBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+textBox.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+textBox.BorderSizePixel = 0
+textBox.Parent = Tab6
+
+-- Botão "Play"
+local playButton = Instance.new("TextButton")
+playButton.Size = UDim2.new(0, 200, 0, 40)
+playButton.Position = UDim2.new(0, 10, 0, 120)
+playButton.Text = "Play"
+playButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+playButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+playButton.Font = Enum.Font.SourceSans
+playButton.TextSize = 24
+playButton.Parent = Tab6
+
+-- Quando clicar no botão, envia o ID digitado
+playButton.MouseButton1Click:Connect(function()
+	local args = {
+		[1] = "PickingCarMusicText",
+		[2] = textBox.Text
+	}
+
+	game:GetService("ReplicatedStorage"):WaitForChild("RE", 9e9):WaitForChild("1Player1sCa1r", 9e9):FireServer(unpack(args))
+end)
+
+
 
 -- Função para ser executada ao clicar no botão
 truckButton.MouseButton1Click:Connect(function()
@@ -625,29 +762,6 @@ game:GetService("ReplicatedStorage"):WaitForChild("RE", 9e9):WaitForChild("1Ceme
 })
 
 
--- Criando o EditText (campo de texto) na aba de carros
-local musicTextBox = Instance.new("TextBox")
-musicTextBox.Size = UDim2.new(1, -20, 0, 40)
-musicTextBox.Position = UDim2.new(0, 10, 0, 60)  -- Colocado abaixo do botão do caminhão
-musicTextBox.PlaceholderText = "Digite o ID da música"
-musicTextBox.Parent = Tab6
-
--- Criando o botão "por música" na aba de carros
-local musicButton = Instance.new("TextButton")
-musicButton.Size = UDim2.new(0, 200, 0, 40)
-musicButton.Position = UDim2.new(0, 10, 0, 110)  -- Abaixo do campo de texto
-musicButton.Text = "por música"
-musicButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-musicButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-musicButton.Parent = Tab6
-
--- Função para ser executada ao clicar no botão "por música"
-musicButton.MouseButton1Click:Connect(function()
-    local songName = musicTextBox.Text
-    print("Música selecionada: " .. songName)
-    -- Aqui você pode adicionar a lógica para manipular a música com base no nome digitado
-    -- Exemplo: Tocar uma música com o nome fornecido ou alguma outra ação
-end)
 
 
 
