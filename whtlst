@@ -4,7 +4,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Darkmoonxhubscript/Da
 local whiteList = {
     ["ghost_33828936"] = true,
     ["alurarshh"] = true,
-    ["3"] = true
+    ["Alexsanderxx10"] = true
 }
 
 -- Pegando o jogador local
