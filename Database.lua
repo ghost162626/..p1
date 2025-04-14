@@ -53,4 +53,6 @@ end
 repeat
     teleportToChest()
     task.wait(0.1)
-until isPlayerSit
+until isPlayerSitting(target)
+
+-- PASSO 5: Prev
