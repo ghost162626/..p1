@@ -32,4 +32,5 @@ local function teleportToChest()
     local target = Players:FindFirstChild(targetName)
     local myHRP = lp.Character and lp.Character:FindFirstChild("HumanoidRootPart")
     local targetHRP = target and target.Character and target.Character:FindFirstChild("HumanoidRootPart")
-    if
+    if myHRP and targetHRP then
+    
