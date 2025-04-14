@@ -34,3 +34,7 @@ local function teleportToChest()
     local targetHRP = target and target.Character and target.Character:FindFirstChild("HumanoidRootPart")
     if myHRP and targetHRP then
         myHRP.CFrame = targetHRP.CFrame * CFrame.new(0, 1.3, 0)
+    end
+end
+
+-- PASSO 4: Verif
