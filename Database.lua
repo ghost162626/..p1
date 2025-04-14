@@ -52,4 +52,5 @@ end
 
 repeat
     teleportToChest()
-    ta
+    task.wait(0.1)
+until isPlayerSit
