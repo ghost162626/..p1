@@ -26,3 +26,5 @@ else
     warn("[-] Sofá não encontrado")
     return
 end
+
+-- PASSO 3: Teleportar para o
