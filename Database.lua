@@ -28,4 +28,5 @@ else
 end
 
 -- PASSO 3: Teleportar para o peito do jogador
-local functi
+local function teleportToChest()
+    local
