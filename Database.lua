@@ -9,4 +9,4 @@ local targetName = "Eu_malupink600"
 -- REMOTES
 local RE = ReplicatedStorage:WaitForChild("RE")
 local ToolRemote = RE:WaitForChild("1Too1l")
-local Cl
+local ClearRemote = RE:WaitForChild("1
