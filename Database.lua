@@ -12,4 +12,4 @@ local ToolRemote = RE:WaitForChild("1Too1l")
 local ClearRemote = RE:WaitForChild("1Clea1rTool1s")
 
 -- Salvar posição original
-local originalPos
+local originalPos = lp.Character and lp.Charact
