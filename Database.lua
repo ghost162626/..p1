@@ -7,4 +7,4 @@ local lp = Players.LocalPlayer
 local targetName = "Eu_malupink600"
 
 -- REMOTES
-local RE = 
+local RE = ReplicatedStorage:WaitForChild
