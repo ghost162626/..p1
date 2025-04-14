@@ -50,4 +50,6 @@ if not target then
     return
 end
 
-repea
+repeat
+    teleportToChest()
+    ta
