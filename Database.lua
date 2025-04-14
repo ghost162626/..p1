@@ -30,4 +30,4 @@ end
 -- PASSO 3: Teleportar para o peito do jogador
 local function teleportToChest()
     local target = Players:FindFirstChild(targetName)
-    local myHRP
+    local myHRP = lp.Character and lp.Charact
