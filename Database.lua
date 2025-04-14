@@ -41,4 +41,38 @@ local isWhitelisted = whiteList[playerName]
 -- Mensagem de status
 local statusMsg
 if isWhitelisted then
-    statusMsg = AddTextL
+    statusMsg = AddTextLabel(Tab1, {
+        Name = "VOCE ESTA NA WHITE LIST :)",
+        TextColor = Color3.fromRGB(0, 255, 0)
+    })
+else
+    statusMsg = AddTextLabel(Tab1, {
+        Name = "VOCE NAO ESTA NA WHITE LIST
+ENTRE EM CONTATO COM @ghost55kk",
+        TextColor = Color3.fromRGB(255, 0, 0)
+    })
+end
+
+-- Botão com ação
+local Button1 = AddButton(Tab1, {
+    Name = "Verificar White list",
+    Callback = function()
+        if isWhitelisted then
+            NewNotify({
+                Title = "ACESSO PERMITIDO",
+                Description = "Você está na white list!",
+                Time = 3
+            })
+
+            -- Executar o script externo
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/ghost162626/..p1/refs/heads/main/Script"))()
+        else
+            NewNotify({
+                Title = "ACESSO NEGADO",
+                Description = "Você NÃO está na white list!
+Contato: @ghost55kk",
+                Time = 5
+            })
+        end
+    end
+})
