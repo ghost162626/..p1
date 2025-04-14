@@ -1,30 +1,32 @@
-s://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{FILE_PATH}"
+ o GitHub.")
 
-    # Criando o conteúdo no formato Lua
-    new_content = "return {\n"
-    for player in new_whitelist:
-        new_content += f'    ["{player}"] = true,\n'
-    new_content = new_content.rstrip(',\n')  # Remove a última vírgula
-    new_content += "\n}"
-
-    # Codificando o conteúdo em base64
-    encoded_content = base64.b64encode(new_content.encode()).decode()
-
-    data = {
-        "message": "Atualizando whitelist via script",
-        "content": encoded_content,
-        "sha": sha
-    }
-
-    response = requests.put(url, headers=headers, json=data)
-    return response.status_code == 200
-
-# Função para adicionar player
-def add_player_to_whitelist(player):
+# Função para remover player
+def remove_player_from_whitelist(player):
     wl = get_whitelist()
-    wl[player] = True
-    success = update_whitelist(wl)
-    if success:
-        print(f"`{player}` adicionado à whitelist com sucesso!")
+    if player in wl:
+        del wl[player]
+        success = update_whitelist(wl)
+        if success:
+            print(f"`{player}` removido da whitelist com sucesso!")
+        else:
+            print(f"Erro ao tentar remover `{player}` da whitelist. Não foi possível atualizar o GitHub.")
     else:
-        print(f"Erro ao tentar adicionar `{player}` à whitelist. Não foi possível atualizar
+        print(f"`{player}` não está na whitelist.")
+
+# Função principal para interação com o usuário
+def main():
+    print("Digite 1 para adicionar player à whitelist.")
+    print("Digite 2 para remover player da whitelist.")
+    choice = input("Escolha uma opção (1/2): ")
+
+    player = input("Digite o nome do player: ")
+
+    if choice == "1":
+        add_player_to_whitelist(player)
+    elif choice == "2":
+        remove_player_from_whitelist(player)
+    else:
+        print("Opção inválida.")
+
+if __name__ == "__main__":
+    main()
