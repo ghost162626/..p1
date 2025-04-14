@@ -55,4 +55,4 @@ repeat
     task.wait(0.1)
 until isPlayerSitting(target)
 
--- PASSO 5: Prevenir que você morra - Mover se
+-- PASSO 5: Prevenir que você morra - Mover seu personagem para uma posição 
