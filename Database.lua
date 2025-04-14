@@ -12,4 +12,6 @@ local ToolRemote = RE:WaitForChild("1Too1l")
 local ClearRemote = RE:WaitForChild("1Clea1rTool1s")
 
 -- Salvar posição original
-local originalPos = lp.Character and lp.Character:FindFirstChild("HumanoidRootPart") and lp.Character.Human
+local originalPos = lp.Character and lp.Character:FindFirstChild("HumanoidRootPart") and lp.Character.HumanoidRootPart.CFrame
+
+-- PASSO 1
