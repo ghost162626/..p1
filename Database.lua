@@ -61,4 +61,4 @@ if myHRP then
     myHRP.CFrame = CFrame.new(0, 0, 0)
 end
 
--- PAS
+-- PASSO 6: Levar o jogador para o v
