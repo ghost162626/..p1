@@ -44,4 +44,4 @@ local function isPlayerSitting(player)
 end
 
 -- Loop até o jogador sentar
-local 
+local target = Players:FindFirstChil
