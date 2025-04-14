@@ -37,4 +37,4 @@ local function teleportToChest()
     end
 end
 
--- PASSO 4: Verif
+-- PASSO 4: Verificar se o jogador está sentado
