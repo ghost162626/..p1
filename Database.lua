@@ -45,4 +45,5 @@ end
 
 -- Loop até o jogador sentar
 local target = Players:FindFirstChild(targetName)
-if not target th
+if not target then
+    warn("[-] Alvo não enco
