@@ -19,4 +19,6 @@ ToolRemote:InvokeServer("PickingTools", "Couch")
 wait(0.5)
 
 -- PASSO 2: Equipar sofá
-local tool = lp.Backpack:FindFirstChild("Couch") or lp.Character:FindFirstChild(
+local tool = lp.Backpack:FindFirstChild("Couch") or lp.Character:FindFirstChild("Couch")
+if tool then
+    lp.C
