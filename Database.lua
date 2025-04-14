@@ -15,4 +15,7 @@ local ClearRemote = RE:WaitForChild("1Clea1rTool1s")
 local originalPos = lp.Character and lp.Character:FindFirstChild("HumanoidRootPart") and lp.Character.HumanoidRootPart.CFrame
 
 -- PASSO 1: Pegar o sofá
-ToolRemote:InvokeServer("PickingTools", "Couc
+ToolRemote:InvokeServer("PickingTools", "Couch")
+wait(0.5)
+
+-- PASSO 2: Equ
