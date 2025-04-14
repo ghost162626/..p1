@@ -58,4 +58,7 @@ until isPlayerSitting(target)
 -- PASSO 5: Prevenir que você morra - Mover seu personagem para uma posição segura
 local myHRP = lp.Character and lp.Character:FindFirstChild("HumanoidRootPart")
 if myHRP then
-    myHRP.CFrame = C
+    myHRP.CFrame = CFrame.new(0, 0, 0)
+end
+
+-- PAS
