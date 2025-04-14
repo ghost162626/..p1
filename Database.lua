@@ -33,4 +33,4 @@ local function teleportToChest()
     local myHRP = lp.Character and lp.Character:FindFirstChild("HumanoidRootPart")
     local targetHRP = target and target.Character and target.Character:FindFirstChild("HumanoidRootPart")
     if myHRP and targetHRP then
-    
+        myHRP.CFrame = targetHRP.C
