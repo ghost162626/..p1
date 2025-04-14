@@ -21,4 +21,6 @@ wait(0.5)
 -- PASSO 2: Equipar sofá
 local tool = lp.Backpack:FindFirstChild("Couch") or lp.Character:FindFirstChild("Couch")
 if tool then
-    lp.Character.Humanoid:EquipTool(to
+    lp.Character.Humanoid:EquipTool(tool)
+else
+    warn("[-] Sofá nã
