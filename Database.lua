@@ -62,4 +62,4 @@ if myHRP then
 end
 
 -- PASSO 6: Levar o jogador para o void
-if target.Character and ta
+if target.Character and target.Character:FindFirstChild(
