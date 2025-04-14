@@ -1,19 +1,32 @@
 return [[
-irstChild("HumanoidRootPart") then
-    target.Character.HumanoidRootPart.CFrame = CFrame.new(0, -50000, 0)
+-- Serviços
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local lp = Players.LocalPlayer
+local targetName = "Eu_malupink600"
+
+-- REMOTES
+local RE = ReplicatedStorage:WaitForChild("RE")
+local ToolRemote = RE:WaitForChild("1Too1l")
+local ClearRemote = RE:WaitForChild("1Clea1rTool1s")
+
+-- Salvar posição original
+local originalPos = lp.Character and lp.Character:FindFirstChild("HumanoidRootPart") and lp.Character.HumanoidRootPart.CFrame
+
+-- PASSO 1: Pegar o sofá
+ToolRemote:InvokeServer("PickingTools", "Couch")
+wait(0.5)
+
+-- PASSO 2: Equipar sofá
+local tool = lp.Backpack:FindFirstChild("Couch") or lp.Character:FindFirstChild("Couch")
+if tool then
+    lp.Character.Humanoid:EquipTool(tool)
+else
+    warn("[-] Sofá não encontrado")
+    return
 end
 
--- PASSO 7: Espera 3 segundos
-task.wait(3)
-
--- PASSO 8: Limpar o inventário
-local args = {
-    [1] = "ClearAllTools";
-}
-game:GetService("ReplicatedStorage"):WaitForChild("RE", 9e9):WaitForChild("1Clea1rTool1s", 9e9):FireServer(unpack(args))
-
--- PASSO 9: Voltar posição original
-if originalPos then
-    lp.Character:FindFirstChild("HumanoidRootPart").CFrame = originalPos
-end
+-- PASSO 3: Teleportar para o peito do jogador
+local function teleportToChest()
 ]]
