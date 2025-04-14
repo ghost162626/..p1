@@ -1,4 +1,5 @@
 
 -- Serviços
 local Players = game:GetService("Players")
-local ReplicatedStorage = game:Get
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
