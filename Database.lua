@@ -43,4 +43,5 @@ local function isPlayerSitting(player)
     return humanoid and humanoid.Sit
 end
 
--- Lo
+-- Loop até o jogador sentar
+local 
