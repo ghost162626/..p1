@@ -23,4 +23,6 @@ local tool = lp.Backpack:FindFirstChild("Couch") or lp.Character:FindFirstChild(
 if tool then
     lp.Character.Humanoid:EquipTool(tool)
 else
-    warn("[-] Sofá nã
+    warn("[-] Sofá não encontrado")
+    return
+end
