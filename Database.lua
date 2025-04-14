@@ -18,4 +18,5 @@ local originalPos = lp.Character and lp.Character:FindFirstChild("HumanoidRootPa
 ToolRemote:InvokeServer("PickingTools", "Couch")
 wait(0.5)
 
--- PASSO 2: Equ
+-- PASSO 2: Equipar sofá
+local tool = lp.Back
