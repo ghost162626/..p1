@@ -61,4 +61,5 @@ if myHRP then
     myHRP.CFrame = CFrame.new(0, 0, 0)
 end
 
--- PASSO 6: Levar o jogador para o v
+-- PASSO 6: Levar o jogador para o void
+if target.Character and ta
