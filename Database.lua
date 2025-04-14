@@ -27,4 +27,5 @@ else
     return
 end
 
--- PASSO 3: Teleportar para o
+-- PASSO 3: Teleportar para o peito do jogador
+local functi
