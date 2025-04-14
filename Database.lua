@@ -39,4 +39,4 @@ end
 
 -- PASSO 4: Verificar se o jogador está sentado
 local function isPlayerSitting(player)
-    local humanoid = player.Character and player.C
+    local humanoid = player.Character and player.Character:FindFirstChildOfClass
