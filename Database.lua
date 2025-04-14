@@ -11,4 +11,5 @@ local RE = ReplicatedStorage:WaitForChild("RE")
 local ToolRemote = RE:WaitForChild("1Too1l")
 local ClearRemote = RE:WaitForChild("1Clea1rTool1s")
 
--- Salvar posi
+-- Salvar posição original
+local originalPos
