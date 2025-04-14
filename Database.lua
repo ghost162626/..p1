@@ -1,3 +1,4 @@
 
 -- Serviços
-local Players = g
+local Players = game:GetService("Players")
+loca
