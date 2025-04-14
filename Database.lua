@@ -1,4 +1,4 @@
 
 -- Serviços
 local Players = game:GetService("Players")
-loca
+local ReplicatedStorage = game:Get
