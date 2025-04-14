@@ -38,3 +38,4 @@ local function teleportToChest()
 end
 
 -- PASSO 4: Verificar se o jogador está sentado
+local function isPlayerSittin
