@@ -1,2 +1,3 @@
-print("sdfjkdsn")
-print("sdfjkdsn")
+{
+  "allowedPlayers": [id, id, id]
+}
